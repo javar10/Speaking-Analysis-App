@@ -7,14 +7,14 @@ import SavedDataScreen from '../screens/SavedDataScreen';
 const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="SavedData" component={SavedDataScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
+    return (
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen name="Home" component={HomeScreen} />
+                <Stack.Screen name="SavedData" component={SavedDataScreen} />
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
 }
 
-export default AppNavigator;
+export default AppNavigator
