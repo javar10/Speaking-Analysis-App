@@ -36,5 +36,21 @@ export const useRecordings = () => {
         }
     };
 
-    return { recordings, loadRecordings, saveRecording };
+    const deleteRecording = async (id) => {
+        try {
+            // 1. Filter out the specific item by ID
+            const updatedList = recordings.filter(item => item.id !== id);
+
+            // 2. Update the local state so the UI refreshes immediately
+            setRecordings(updatedList);
+
+            // 3. Save the new filtered array back to AsyncStorage
+            await AsyncStorage.setItem(RECORDINGS_LIST_KEY, JSON.stringify(updatedList));
+        } catch (error) {
+            console.error("Failed to delete recording:", error);
+        }
+    };
+
+
+    return { recordings, loadRecordings, saveRecording, deleteRecording };
 };

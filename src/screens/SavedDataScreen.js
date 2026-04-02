@@ -1,8 +1,8 @@
-import { View, Text, Button, FlatList } from 'react-native';
+import { View, Text, Button, FlatList, TouchableOpacity } from 'react-native';
 import { useRecordings } from '../hooks/useRecordings';
 
 const SavedDataScreen = ({ navigation }) => {
-    const { recordings } = useRecordings();
+    const { recordings, deleteRecording } = useRecordings();
 
     return (
         <View style={{ flex: 1, paddingTop: 50 }}>
@@ -10,9 +10,16 @@ const SavedDataScreen = ({ navigation }) => {
                 data={recordings}
                 keyExtractor={(item) => item.id}
                 renderItem={({ item }) => (
-                    <View style={{ padding: 10, borderBottomWidth: 1 }}>
-                        <Text>{item.name}</Text>
-                        <Text style={{ fontSize: 10, color: 'gray' }}>{item.timestamp}</Text>
+                    <View>
+                        <View style={{ padding: 10, borderBottomWidth: 1 }}>
+                            <Text>{item.name}</Text>
+                            <Text style={{ fontSize: 10, color: 'gray' }}>{item.timestamp}</Text>
+                        </View>
+                        <TouchableOpacity
+                            onPress={() => deleteRecording(item.id)}
+                        >
+                            <Text>X</Text>
+                        </TouchableOpacity>
                     </View>
                 )}
             />
