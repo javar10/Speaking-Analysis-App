@@ -2,7 +2,7 @@ import { View, Text, Button, FlatList, TouchableOpacity } from 'react-native';
 import { useRecordings } from '../hooks/useRecordings';
 
 const SavedDataScreen = ({ navigation }) => {
-    const { recordings, deleteRecording } = useRecordings();
+    const { recordings, playRecording, deleteRecording } = useRecordings();
 
     return (
         <View style={{ flex: 1, paddingTop: 50 }}>
@@ -15,6 +15,14 @@ const SavedDataScreen = ({ navigation }) => {
                             <Text>{item.name}</Text>
                             <Text style={{ fontSize: 10, color: 'gray' }}>{item.timestamp}</Text>
                         </View>
+                        
+                        <TouchableOpacity
+                            onPress={() => playRecording(item.recordingUri)}
+                        >
+                            {/* <Text>{item.timestamp}</Text> */}
+                            <Text>▶ Play</Text>
+                        </TouchableOpacity>
+
                         <TouchableOpacity
                             onPress={() => deleteRecording(item.id)}
                         >

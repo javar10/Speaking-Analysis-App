@@ -23,7 +23,7 @@ export const useRecordings = () => {
             console.error(error);
         }
     };
-    
+
     //Start, Stop and Save recording functions
     const [recordingInstance, setRecordingInstance] = useState(null);
     const startRecording = async () => {
@@ -73,6 +73,25 @@ export const useRecordings = () => {
         console.log('Recording saved:', newEntry);
     };
 
+    //Play recording function
+    const playRecording = async (uri) => {
+        try {
+            const { sound } = await Audio.Sound.createAsync(
+                { uri },
+                { shouldPlay: true } // Plays immediately after loading
+            );
+
+            // Optional: Unload the sound from memory when it finishes
+            sound.setOnPlaybackStatusUpdate(async (status) => {
+                if (status.didJustFinish) {
+                    await sound.unloadAsync();
+                }
+            });
+        } catch (error) {
+            console.error("Error playing sound:", error);
+        }
+    };
+
     //Delete recording function
     const deleteRecording = async (id) => {
         try {
@@ -89,5 +108,5 @@ export const useRecordings = () => {
         }
     };
 
-    return { recordings, loadRecordings, startRecording, stopRecording, saveRecording, deleteRecording };
+    return { recordings, loadRecordings, startRecording, stopRecording, saveRecording, playRecording, deleteRecording };
 };
