@@ -17,7 +17,7 @@ const SavedDataScreen = ({ navigation }) => {
                 )}
             />
 
-            <Button title="Go Back" onPress={() => navigation.goBack()} />
+            <Button title="New Recording" onPress={() => navigation.navigate('Home')} />
         </View>
     );
 };
