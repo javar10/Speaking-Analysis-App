@@ -1,13 +1,27 @@
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, FlatList } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect, useState } from 'react';
+import { useRecordings } from '../hooks/useRecordings';
 
 const SavedDataScreen = ({ navigation }) => {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Saved Data Screen</Text>
+    const { recordings } = useRecordings();
 
-      <Button title="Go Back" onPress={() => navigation.goBack()} />
-    </View>
-  );
+    return (
+        <View style={{ flex: 1, paddingTop: 50 }}>
+            <FlatList
+                data={recordings}
+                keyExtractor={(item) => item.id}
+                renderItem={({ item }) => (
+                    <View style={{ padding: 10, borderBottomWidth: 1 }}>
+                        <Text>{item.name}</Text>
+                        <Text style={{ fontSize: 10, color: 'gray' }}>{item.timestamp}</Text>
+                    </View>
+                )}
+            />
+
+            <Button title="Go Back" onPress={() => navigation.goBack()} />
+        </View>
+    );
 };
 
 export default SavedDataScreen;

@@ -1,0 +1,1 @@
+export const RECORDINGS_LIST_KEY = '@recording_key_list';
