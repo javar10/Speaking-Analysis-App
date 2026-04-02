@@ -1,6 +1,4 @@
 import { View, Text, Button, FlatList } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useEffect, useState } from 'react';
 import { useRecordings } from '../hooks/useRecordings';
 
 const SavedDataScreen = ({ navigation }) => {

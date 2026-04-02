@@ -1,8 +1,5 @@
-import { useState, useEffect } from 'react';
 import { View, Text, Button } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRecordings } from '../hooks/useRecordings';
-
 
 const HomeScreen = ({ navigation }) => {
     const { saveRecording } = useRecordings();
